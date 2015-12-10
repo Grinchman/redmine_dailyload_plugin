@@ -1,0 +1,14 @@
+# English strings go here for Rails i18n
+en:
+  field_period: "Periodicity"
+  label_workdays: "Work days load"
+  workdays_title: "Work days"
+  workdays_site_title: "Work days"
+  workdays_show_label: "Work days"
+  workdays_show_next_week: "Next week"
+  workdays_show_prev_week: "Previous week"
+  workdays_show_next_month: "Next month"
+  workdays_show_prev_month: "Previous month"
+  workdays_week_period: "Week period"
+  workdays_month_period: "Month period"
+  workdays_reset_period: "Reset to current date"

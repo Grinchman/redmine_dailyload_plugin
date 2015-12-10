@@ -1,0 +1,19 @@
+<%
+# Renders the headers of the month names
+%>
+
+<%
+   if @viewmode == :week_range
+      days = @currentweek
+   else
+      days = @currentmonth
+   end
+%>
+<% days.each do |day| %>
+  <th class="day-name" scope="colgroup">
+    <dl>
+      <dt><%= "#{day.strftime("%d %b")}" %></dt>
+      <dt><%= "#{day.strftime("%a")}"%></dt>
+    </dl>
+  </th>
+<% end %>

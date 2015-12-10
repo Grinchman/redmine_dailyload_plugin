@@ -1,0 +1,42 @@
+<% html_title(l(:workdays_site_title)) %>
+
+<h2><%= l(:workdays_show_label) %></h2>
+
+<%
+   if @viewmode == :week_range
+     period = "_week"
+     first_day = @monday
+   else
+     period = "_month"
+     first_day = @monthstart
+   end
+
+
+%>
+
+<div class="wrapper">
+  <table class="data">
+    <thead>
+    <tr class="month-names">
+      <td><%= link_to l(("workdays_week_period").to_sym), index_action_path(viewmode: :week_range, firstday: @today.beginning_of_week) %></td>
+      <td><%= link_to l(("workdays_month_period").to_sym), index_action_path(viewmode: :month_range, firstday:  @today.beginning_of_month) %></td>
+      <td><%= link_to l(("workdays_reset_period").to_sym), index_action_path(viewmode: @viewmode) %></td>
+    </tr>
+    </thead>
+  </table>
+</div>
+
+<div class="wrapper">
+  <table class="data">
+    <thead>
+    <tr class="month-names">
+      <td><%= link_to l(("workdays_show_prev" + period).to_sym), index_action_path(viewmode: @viewmode, firstday: (first_day - 1).public_send("beginning_of" + period)) %></td>
+      <td><%= render :partial => 'days_names_header' %></td>
+      <td><%= link_to l(("workdays_show_next" + period).to_sym), index_action_path(viewmode: @viewmode, firstday: first_day.public_send("end_of" + period) + 1) %></td>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render :partial => 'users_workload' %>
+    </tbody>
+  </table>
+</div>

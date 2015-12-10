@@ -1,0 +1,34 @@
+<%
+# Renders the headers of the month names
+%>
+
+<%
+   if @viewmode == :week_range
+      days = @currentweek
+   else
+      days = @currentmonth
+   end
+%>
+
+<% @users.each do |user|%>
+    <%
+    user_issues = @issues.where(:assigned_to_id => user.id)
+    %>
+    <% if user_issues.size > 0 %>
+        <tr>
+          <td>
+            <p><%= user %></p>
+            <p><%= user.id %></p>
+            <p><%= user.login %></p>
+          </td>
+        </tr>
+        <tr>
+          <% user_issues.find_each do |issue|%>
+            <td>
+              <p>Subject: <%= issue.subject %></p>
+              <p>Period: <%= Period.find(issue.period_id).period_name %></p>
+            </td>
+          <% end %>
+        </tr>
+    <% end %>
+<% end %>
