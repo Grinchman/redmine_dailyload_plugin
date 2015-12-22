@@ -31,7 +31,7 @@
     <thead>
     <tr class="month-names">
       <td><%= link_to l(("workdays_show_prev" + period).to_sym), index_action_path(viewmode: @viewmode, firstday: (first_day - 1).public_send("beginning_of" + period)) %></td>
-      <td><%= render :partial => 'days_names_header' %></td>
+      <%= render :partial => 'days_names_header' %>
       <td><%= link_to l(("workdays_show_next" + period).to_sym), index_action_path(viewmode: @viewmode, firstday: first_day.public_send("end_of" + period) + 1) %></td>
     </tr>
     </thead>

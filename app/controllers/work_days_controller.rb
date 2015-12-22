@@ -14,7 +14,7 @@ class WorkDaysController < ApplicationController
     @viewmode = params[:viewmode].to_sym
     end
 
-    @viewmode ||= :week_range
+    @viewmode ||= :month_range
 
     if params[:firstday].present?
       @first_day = Date.parse(params[:firstday],"%Y-%m-%d")

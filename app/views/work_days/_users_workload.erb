@@ -16,17 +16,22 @@
     %>
     <% if user_issues.size > 0 %>
         <tr>
-          <td>
-            <p><%= user %></p>
-            <p><%= user.id %></p>
-            <p><%= user.login %></p>
-          </td>
+          <td><%= user %></td>
+          <%
+            all_days = WorkDayHelper.user_dailyload(user_issues, days)
+          %>
+          <% days.each do |day| %>
+          <td><%= all_days[day]%></td>
+          <% end %>
         </tr>
         <tr>
           <% user_issues.find_each do |issue|%>
             <td>
-              <p>Subject: <%= issue.subject %></p>
-              <p>Period: <%= Period.find(issue.period_id).period_name %></p>
+              <p><%= link_to_issue(issue) %></p>
+              <% unless issue.period_id.nil? %>
+                <p>Period: <%= Period.where("period_id = #{issue.period_id}").first.period_name %></p>
+              <% end %>
+              <p>---------------------------------</p>
             </td>
           <% end %>
         </tr>

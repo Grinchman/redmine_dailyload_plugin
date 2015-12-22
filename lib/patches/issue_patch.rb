@@ -30,7 +30,7 @@ module RedmineDailyload
       base.class_eval do
         unloadable # Send unloadable so it will not be unloaded in development
           belongs_to :period, :class_name => Period, :foreign_key => 'period_id'
-          has_many :work_days, :class_name => WorkDay, :foreign_key => 'work_day_id'
+          has_many :work_days, :class_name => WorkDay, :foreign_key => 'work_day_id', dependent: :destroy
 
         #after_save :update_period_from_issue
       end

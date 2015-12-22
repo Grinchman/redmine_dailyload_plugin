@@ -57,12 +57,18 @@ module RedmineDailyload
         return ''
       end
 
+      def calculate_work_load(context)
+        work_days = WorkDayHelper.issue_daily_load(context)
+      end
+
       def controller_issues_new_before_save(context = {})
         set_period_on_issue(context)
+        calculate_work_load(context)
       end
 
       def controller_issues_edit_before_save(context = {})
         set_period_on_issue(context)
+        calculate_work_load(context)
       end
 
       # # Saves the Deliverable assignment to the issue
